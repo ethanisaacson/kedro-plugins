@@ -21,7 +21,7 @@ from .._io import DatasetError as DataSetError
 logger = logging.getLogger(__name__)
 
 
-class ParquetDataSet(
+class ParquetRelationalDataSet(
     AbstractVersionedDataSet[duckdb.DuckDBPyRelation, duckdb.DuckDBPyRelation]
 ):
     """``CSVDataSet`` loads/saves data from/to a CSV file using an underlying
