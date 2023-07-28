@@ -3,7 +3,6 @@ filesystem (e.g.: local, S3, GCS). It uses polars to handle the CSV file.
 """
 import logging
 from copy import deepcopy
-from io import BytesIO
 from pathlib import PurePosixPath
 from typing import Any, Dict
 
@@ -171,13 +170,10 @@ class ParquetDataSet(
         )
 
     def _save(self, data: duckdb.DuckDBPyRelation) -> None:
+
         save_path = get_filepath_str(self._get_save_path(), self._protocol)
 
-        buf = BytesIO()
-        data.write_parquet(file=buf, **self._save_args)
-
-        with self._fs.open(save_path, mode="wb") as fs_file:
-            fs_file.write(buf.getvalue())
+        data.write_parquet(save_path, **self._save_args)
 
         self._invalidate_cache()
 
