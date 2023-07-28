@@ -32,7 +32,7 @@ repos:
         types: [file, python]
         files: ^kedro-datasets/kedro_datasets/
         exclude: ^(?!kedro-datasets/kedro_datasets/).*\.py$
-        entry: pylint --rcfile kedro-datasets/pyproject.toml --disable=unnecessary-pass
+        entry: pylint --rcfile kedro-datasets/pyproject.toml --disable=unnecessary-pass --extension-pkg-allow-list=duckdb
         stages: [commit]
 
       - id: pylint-quick-kedro-airflow
@@ -70,7 +70,7 @@ repos:
         exclude: ^(?!kedro-datasets/kedro_datasets/).*\.py$
         pass_filenames: false
         stages: [manual]
-        entry: pylint --rcfile kedro-datasets/pyproject.toml --disable=unnecessary-pass,E0401 kedro-datasets/kedro_datasets
+        entry: pylint --rcfile kedro-datasets/pyproject.toml --disable=unnecessary-pass,E0401  --extension-pkg-allow-list=duckdb kedro-datasets/kedro_datasets
 
       - id: pylint-kedro-datasets-features
         name: "PyLint on kedro-datasets features/*"
