@@ -88,6 +88,9 @@ plotly-plotlydataset = ["kedro-datasets[pandas-base,plotly-base]"]
 polars = ["kedro-datasets[polars.CSVDataSet]"]
 polars-base = ["polars~=0.17.0"]
 polars-csvdataset = ["kedro-datasets[polars-base]"]
+duckdb = ["kedro-datasets[polars.CSVDataSet]"]
+duckdb-base = ["duckdb~=0.8.1"]
+duckdb-parquetdataset = ["kedro-datasets[duckdb-base]"]
 redis = ["kedro-datasets[redis.PickleDataSet]"]
 redis-pickledataset = ["redis~=4.1"]
 s3fs-base = ["s3fs>=0.3.0, <0.5"]
@@ -124,7 +127,7 @@ yaml-yamldataset = ["kedro-datasets[pandas-base]", "PyYAML>=4.2, <7.0"]
 
 all = [
   """kedro-datasets[\
-  api,biosequence,dask,databricks,\
+  api,biosequence,dask,databricks,duckdb,\
   geopandas,holoviews,matplotlib,\
   networkx,pickle,pillow,plotly,\
   polars,snowflake,redis,spark,svmlight,\
@@ -186,6 +189,7 @@ test = [
   "Pillow~=9.0",
   "plotly>=4.8.0, <6.0",
   "polars~=0.15.13",
+  "duckdb~=0.8.1",
   "pre-commit>=2.9.2, <3.0",  # The hook `mypy` requires pre-commit version 2.9.2.
   "psutil==5.8.0",
   "pyarrow~=8.0",
